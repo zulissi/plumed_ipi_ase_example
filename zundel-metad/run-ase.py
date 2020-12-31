@@ -1,6 +1,6 @@
-from ase.calculators.cp2k import CP2K
 from ase.calculators.socketio import SocketClient, SocketIOCalculator
 from ase.io import read
+from xtb.ase.calculator import XTB
 
 # ###### Define geometry from atoms object   ################
 
@@ -8,11 +8,8 @@ atoms = read("h5o2+.xyz")
 
 # Set CP2K calculator #################
 
-workdir = "CP2Ktest"
-aux_settings = {"label": workdir}
-calc = CP2K(**aux_settings)
-
-port_ase_calc = 12345
+calc = XTB(method='GFN0-xTB')
+atoms.set_calculator(calc)
 
 # ################# Create Client ############################
 
@@ -22,6 +19,4 @@ client = SocketClient(host=host_ipi, port=port_ipi)
 
 # ################# Create ASE SERVER ############################
 
-with SocketIOCalculator(calc, log="socketio.log", port=port_ase_calc) as io_calc:
-    atoms.set_calculator(io_calc)
-    client.run(atoms)
+client.run(atoms)

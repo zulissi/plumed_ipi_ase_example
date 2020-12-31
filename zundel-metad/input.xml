@@ -1,10 +1,10 @@
 <simulation>
-    <ffsocket mode='unix' name='driver'>
+    <ffsocket mode='inet' name='driver'>
          <latency>  1.00000000e-02</latency>
          <slots>4</slots>
          <port>20614</port>
          <timeout>  6.00000000e+02</timeout>
-         <address>zundel</address>
+         <address>localhost</address>
    </ffsocket>
    <ffplumed name="plumed">
          <init_file mode="xyz">./h5o2+.xyz</init_file>
