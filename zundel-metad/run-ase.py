@@ -16,7 +16,4 @@ atoms.set_calculator(calc)
 port_ipi = 20614 # needs to match the port in input.xml
 host_ipi = "localhost"
 client = SocketClient(host=host_ipi, port=port_ipi)
-
-# ################# Create ASE SERVER ############################
-
 client.run(atoms)
